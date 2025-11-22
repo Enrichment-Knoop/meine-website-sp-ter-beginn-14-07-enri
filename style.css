@@ -1,48 +1,123 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  background-color: #f9f9f9;
-  color: #333;
+/* ==========================================================
+   Teenkreis – Dark‑Mode (breitere Box, Beschriftungen)
+   ========================================================== */
+
+/* -------------------- Farbvariablen -------------------- */
+:root {
+    --activeclr: #1e1e2f;          /* Start‑Hintergrundfarbe */
+    --accent:    #2e8b57;         /* Akzent‑Grün (aktive Elemente) */
+    --navbar-bg: #2b2b3a;         /* Hintergrund der Navbar */
+    --icon-clr:  #e0e0e0;         /* Standard‑Icon‑Farbe (helles Grau) */
 }
 
-header {
-  background: #005f99;
-  color: white;
-  padding: 1em 0;
-  text-align: center;
+/* Property‑Definition für Animation */
+@property --activeclr {
+    syntax: "<color>";
+    initial-value: #1e1e2f;
+    inherits: true;
 }
 
-nav a {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-  font-weight: bold;
+/* Grundlayout */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: system-ui, sans-serif;
+    background: var(--activeclr);
+    transition: background 300ms ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-main {
-  padding: 2em;
-  text-align: center;
+/* -------------------- Wrapper (breiter) -------------------- */
+.wrapper {
+    width: 28rem;                 /* etwas breiter als vorher */
+    height: 6rem;
+    border-radius: 1rem;
+    overflow: hidden;
+    background: var(--activeclr);
+    box-shadow: rgba(0,0,0,0.4) 0px 7px 29px 0px;
+    margin-top: 2rem;
 }
 
-button {
-  padding: 10px 20px;
-  background: #005f99;
-  border: none;
-  color: white;
-  cursor: pointer;
-  border-radius: 5px;
+/* -------------------- Navbar -------------------- */
+.navbar {
+    height: 4rem;
+    background: var(--navbar-bg);
+    display: flex;
+    justify-content: center;      /* zentriert, Abstand über gap */
+    align-items: center;
+    gap: 1.8rem;                 /* mehr Abstand zwischen den Icons */
 }
 
-button:hover {
-  background: #007acc;
+/* -------------------- Nav‑Item (Icon + Label) -------------------- */
+.navitem {
+    display: flex;
+    flex-direction: column;       /* Icon über Text */
+    align-items: center;
+    width: 3rem;                  /* Breite pro Icon‑Block */
+    height: 100%;
+    color: var(--icon-clr);
+    font-size: 1.5rem;            /* Icon‑Größe */
+    cursor: pointer;
+    transition: color 0.3s ease;
 }
 
-footer {
-  text-align: center;
-  padding: 1em;
-  background: #eee;
-  margin-top: 2em;
-  font-size: 0.9em;
+/* Beschriftung unter dem Icon */
+.label {
+    margin-top: 0.2rem;
+    font-size: 0.78rem;           /* etwas kleiner als das Icon */
+    color: var(--icon-clr);
+    transition: color 0.3s ease;
+}
+
+/* Aktives Icon + Label → Akzentfarbe */
+.navitem.active,
+.navitem.active .label {
+    color: var(--accent);
+}
+
+/* Hover‑Effekt (nur bei Geräten mit Hover) */
+@media (hover: hover) {
+    .navitem:not(.active):hover,
+    .navitem:not(.active):hover .label {
+        color: var(--accent);
+    }
+}
+
+/* -------------------- Hauptinhalt -------------------- */
+.content {
+    flex: 1;
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+    color: #e0e0e0;
+}
+.content h1 {
+    margin-bottom: 1rem;
+    color: var(--accent);
+}
+
+/* -------------------- Grün‑Akzent‑Button -------------------- */
+.btn {
+    width: 85px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 15px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.25s ease;
+    background-color: var(--accent);
+    color: #fff;
+    border: none;
+}
+.btn:hover {
+    background-color: #4caf50;
+}
+
+/* -------------------- Responsives Verhalten -------------------- */
+@media (max-width: 480px) {
+    .wrapper { width: 90%; }
 }

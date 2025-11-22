@@ -1,40 +1,89 @@
 <!DOCTYPE html>
 <html lang="de">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine erste Website</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <header>
-      <h1>Willkommen auf meiner Website</h1>
-      <nav>
-        <a href="#">Start</a>
-        <a href="#">Über mich</a>
-        <a href="#">Kontakt</a>
-      </nav>
-    </header>
+    <title>Teenkreis – Startseite</title>
 
-    <main>
-      <section>
-        <h2>Mein erstes Projekt</h2>
-        <p>Hier entsteht etwas Spannendes – mit HTML, CSS und JavaScript.</p>
-        <button id="colorButton">Farbe ändern</button>
-      </section>
+    <!-- Ionicons (Icon‑Font) -->
+    <script type="module"
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule
+            src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+    <!-- Eigenes CSS (Dark‑Mode) -->
+    <link rel="stylesheet" href="style.css?v=1.0">
+</head>
+<body>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <div class="wrapper">
+        <nav class="navbar">
+
+            <!-- Startseite -->
+            <a href="index.html" class="navitem active"
+               onclick="select(this)"
+               data-clr="#1e1e2f">
+                <ion-icon name="home"></ion-icon>
+                <span class="label">Start</span>
+            </a>
+
+            <!-- Über uns -->
+            <a href="ueber-uns.html" class="navitem"
+               onclick="select(this)"
+               data-clr="#2a2a3d">
+                <ion-icon name="people"></ion-icon>
+                <span class="label">Über uns</span>
+            </a>
+
+            <!-- Vitamin C -->
+            <a href="vitamin-c.html" class="navitem"
+               onclick="select(this)"
+               data-clr="#2f2f44">
+                <ion-icon name="leaf"></ion-icon>
+                <span class="label">Vitamin C</span>
+            </a>
+
+            <!-- Standort -->
+            <a href="standort.html" class="navitem"
+               onclick="select(this)"
+               data-clr="#252535">
+                <ion-icon name="location-outline"></ion-icon>
+                <span class="label">Standort</span>
+            </a>
+
+            <!-- Kontakte -->
+            <a href="kontakte.html" class="navitem"
+               onclick="select(this)"
+               data-clr="#2c2c3a">
+                <ion-icon name="mail"></ion-icon>
+                <span class="label">Kontakte</span>
+            </a>
+
+            <!-- Impressum -->
+            <a href="impressum.html" class="navitem"
+               onclick="select(this)"
+               data-clr="#282842">
+                <ion-icon name="document-text"></ion-icon>
+                <span class="label">Impressum</span>
+            </a>
+
+        </nav>
+    </div>
+
+    <!-- ==================== HAUPTINHALT ==================== -->
+    <main class="content">
+        <h1>Willkommen beim Teenkreis</h1>
+
+        <p>
+            Hier kommt später ein kurzer einladender Text hin, der die
+            christlichen Teens aus Rendsburg anspricht.
+        </p>
+
+        <button id="accentToggle" class="btn">Grün‑Akzent wechseln</button>
     </main>
 
-    <footer>
-      <p>© 2025 – erstellt im Enrichment-Kurs „Mit KI zur eigenen Website“</p>
-      <p>
-	  <!-- ===========================================================
-			Impressum - Bitte nicht verändern! (rechtlich verbindlich)
-		=========================================================== -->
-        <a href="impressum.html" target="_blank" rel="noopener noreferrer">Impressum</a>
-		<a href="impressum_eltern.html" target="_blank" rel="noopener noreferrer">Impressum verantwortliche Eltern</a>
-      </p>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
+    <!-- Eigenes JavaScript -->
+    <script src="script.js?v=1.0"></script>
+</body>
 </html>
