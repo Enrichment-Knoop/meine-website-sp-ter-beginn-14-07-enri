@@ -1,5 +1,5 @@
 /* ==========================================================
-   Teenkreis – Dark‑Mode (breitere Box, Beschriftungen)
+   Teenkreis – Dark‑Mode (responsive)
    ========================================================== */
 
 /* -------------------- Farbvariablen -------------------- */
@@ -17,7 +17,7 @@
     inherits: true;
 }
 
-/* Grundlayout */
+/* -------------------- Grundlayout -------------------- */
 html, body {
     margin: 0;
     padding: 0;
@@ -32,7 +32,7 @@ html, body {
 
 /* -------------------- Wrapper (breiter) -------------------- */
 .wrapper {
-    width: 28rem;                 /* etwas breiter als vorher */
+    width: 28rem;                 /* Desktop‑Breite */
     height: 6rem;
     border-radius: 1rem;
     overflow: hidden;
@@ -48,7 +48,7 @@ html, body {
     display: flex;
     justify-content: center;      /* zentriert, Abstand über gap */
     align-items: center;
-    gap: 1.8rem;                 /* mehr Abstand zwischen den Icons */
+    gap: 1.8rem;                 /* Abstand zwischen Icons */
 }
 
 /* -------------------- Nav‑Item (Icon + Label) -------------------- */
@@ -61,13 +61,14 @@ html, body {
     color: var(--icon-clr);
     font-size: 1.5rem;            /* Icon‑Größe */
     cursor: pointer;
+    text-decoration: none;        /* Unterstreichung entfernen */
     transition: color 0.3s ease;
 }
 
-/* Beschriftung unter dem Icon */
+/* Beschriftung */
 .label {
     margin-top: 0.2rem;
-    font-size: 0.78rem;           /* etwas kleiner als das Icon */
+    font-size: 0.78rem;
     color: var(--icon-clr);
     transition: color 0.3s ease;
 }
@@ -117,7 +118,58 @@ html, body {
     background-color: #4caf50;
 }
 
-/* -------------------- Responsives Verhalten -------------------- */
+/* ==========================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================== */
+
+/* Tablet / kleine Laptops (max‑width: 768px) */
+@media (max-width: 768px) {
+    .wrapper {
+        width: 90%;               /* fast die gesamte Breite */
+    }
+    .navbar {
+        gap: 1.2rem;             /* etwas weniger Abstand */
+    }
+    .navitem {
+        width: 2.8rem;
+        font-size: 1.3rem;
+    }
+    .label {
+        font-size: 0.7rem;
+    }
+}
+
+/* Mobile (max‑width: 480px) */
 @media (max-width: 480px) {
-    .wrapper { width: 90%; }
+    .wrapper {
+        width: 100%;              /* volle Breite des Viewports */
+        border-radius: 0;         /* optional: keine Abrundungen am Rand */
+    }
+    .navbar {
+        gap: 0.8rem;
+        overflow-x: auto;         /* horizontales Scrollen, falls nötig */
+        padding: 0 0.5rem;
+    }
+    .navitem {
+        width: 2.5rem;
+        font-size: 1.2rem;
+    }
+    .label {
+        font-size: 0.65rem;
+    }
+}
+
+/* Sehr kleine Bildschirme (max‑width: 360px) – Icons werden etwas kleiner
+   und der Abstand wird weiter reduziert, damit alles sichtbar bleibt. */
+@media (max-width: 360px) {
+    .navbar {
+        gap: 0.6rem;
+    }
+    .navitem {
+        width: 2.2rem;
+        font-size: 1.1rem;
+    }
+    .label {
+        font-size: 0.6rem;
+    }
 }
