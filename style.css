@@ -31,40 +31,28 @@ html, body {
     align-items: center;
 }
 
-/* ==================== Logo links, Navbar mittig (Desktop) ==================== */
-/* Mit CSS Grid: Logo ganz links, Navbar exakt mittig */
+/* ==================== Navbar (zentriert) ==================== */
 .navrow {
+    position: relative;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr minmax(0, 28rem) 1fr; /* Mitte fix für Navbar, Ränder flexibel */
+    display: flex;
+    justify-content: center; /* zentriert den Wrapper (Navbar) */
     align-items: center;
-    column-gap: 0.75rem;
 }
 
-/* Logo linksbündig */
-.brandlogo {
-    grid-column: 1;              /* linke Spalte */
-    justify-self: start;
-    display: block;
-    height: 96px;                /* Logo‑Größe */
-    width: auto;
-    margin-top: 3rem;            /* gleiche vertikale Linie wie Wrapper */
-}
-
-/* Wrapper/ Navbar mittig */
+/* -------------------- Wrapper / Navbar -------------------- */
 .wrapper {
-    grid-column: 2;              /* mittlere Spalte */
-    justify-self: center;
     width: 28rem;
     height: 6rem;
     border-radius: 1rem;
     overflow: hidden;
     background: var(--activeclr);
     box-shadow: rgba(0,0,0,0.4) 0px 7px 29px 0px;
-    margin-top: 3rem;            /* gleicher Offset wie Logo */
+    margin-top: 3rem; /* vertikaler Offset */
+    position: relative;
+    z-index: 1;       /* über allem innerhalb der Navrow */
 }
 
-/* -------------------- Navbar -------------------- */
 .navbar {
     height: 4rem;
     background: var(--navbar-bg);
@@ -74,21 +62,31 @@ html, body {
     gap: 1.8rem;
 }
 
+/* -------------------- Logo (Desktop: neben Navbar links) -------------------- */
+.brandlogo {
+    position: absolute;
+    left: 0;                  /* ganz links am Seitenrand */
+    top: 3rem;                /* gleiche vertikale Linie wie Wrapper */
+    display: block;
+    height: 96px;
+    width: auto;
+    z-index: 0;               /* unterhalb der Wrapper-Ebene */
+}
+
 /* -------------------- Nav‑Item (Icon + Label) -------------------- */
 .navitem {
     display: flex;
-    flex-direction: column;       /* Icon über Text */
+    flex-direction: column;   /* Icon über Text */
     align-items: center;
     width: 3rem;
     height: 100%;
     color: var(--icon-clr);
-    font-size: 1.5rem;            /* Icon‑Größe */
+    font-size: 1.5rem;
     cursor: pointer;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-/* Beschriftung (wichtig für “Standort”) */
 .label {
     margin-top: 0.2rem;
     font-size: 0.78rem;
@@ -96,7 +94,6 @@ html, body {
     transition: color 0.3s ease;
 }
 
-/* Icon leicht nach unten */
 .navitem ion-icon {
     display: block;
     line-height: 1;
@@ -125,6 +122,7 @@ html, body {
     text-align: center;
     color: #e0e0e0;
 }
+
 .content h1 {
     margin-bottom: 1rem;
     color: var(--accent);
@@ -149,41 +147,37 @@ html, body {
 }
 
 /* ==========================================================
-   RESPONSIVE – Mobile (Logo unter Navbar, mittig und weiter unten)
+   RESPONSIVE – Mobile
+   Ziel: Logo über dem Text, NICHT mehr unter der Navbar
    ========================================================== */
 @media (max-width: 480px) {
-    /* Navrow stapeln */
-    .navrow {
-        grid-template-columns: 1fr; /* eine Spalte */
-        row-gap: 0;                 /* Abstände über Margins steuern */
-    }
-
-    /* Reihenfolge: zuerst Navbar (Wrapper), dann Logo */
+    /* Navbar bleibt oben, volle Breite */
     .wrapper {
-        grid-column: 1;
         width: 100%;
         border-radius: 0;
-        margin-top: 2rem;           /* kompakter oben */
+        margin-top: 2rem;
     }
 
+    /* Logo aus der Positionierung lösen und ÜBER dem Text mittig platzieren */
     .brandlogo {
-        grid-column: 1;
-        justify-self: center;       /* Logo mittig unter der Navbar */
-        position: static;           /* keine Überlagerung */
-        margin-top: 4rem;           /* WEITER NACH UNTEN (vorher 2.5rem) */
+        position: static;          /* keine absolute Position → folgt dem DOM */
+        display: block;
         height: 96px;
         width: auto;
+        margin: 3rem auto 0;       /* weiter unten, zentriert (auto) */
     }
 
     .navbar {
         gap: 0.8rem;
-        overflow-x: auto;           /* falls Icons zu viele werden */
+        overflow-x: auto;
         padding: 0 0.5rem;
     }
+
     .navitem {
         width: 2.5rem;
         font-size: 1.2rem;
     }
+
     .label {
         font-size: 0.65rem;
     }
