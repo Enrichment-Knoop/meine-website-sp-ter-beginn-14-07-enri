@@ -17,31 +17,10 @@ function select(el) {
     if (current) current.classList.remove('active');
     el.classList.add('active');
 
-    // Das normale Link‑Verhalten (Navigation) bleibt erhalten,
-    // weil wir hier kein e.preventDefault() aufrufen.
+    // Normales Link‑Verhalten (Navigation) bleibt erhalten
 }
 
-/* -----------------------------------------------------------------
-   Grün‑Akzent‑Wechsler – bleibt unverändert.
-   ----------------------------------------------------------------- */
-function toggleAccent() {
-    const root = document.documentElement.style;
-    const current = getComputedStyle(document.documentElement)
-                    .getPropertyValue('--accent')
-                    .trim();
-
-    const dark  = '#2e8b57';
-    const light = '#4caf50';
-
-    if (current === dark) {
-        root.setProperty('--accent', light);
-    } else {
-        root.setProperty('--accent', dark);
-    }
-}
-
-/* Button‑Event für den Akzent‑Wechsel */
+// Kein Akzentwechsel mehr – Button-Event entfernen
 document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('accentToggle');
-    if (btn) btn.addEventListener('click', toggleAccent);
+    // Keine Event-Listener für den Akzentwechsel mehr
 });

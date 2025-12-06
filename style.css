@@ -5,9 +5,10 @@
 /* -------------------- Farbvariablen -------------------- */
 :root {
     --activeclr: #1e1e2f;          /* Start‑Hintergrundfarbe */
-    --accent:    #2e8b57;         /* Akzent‑Grün (aktive Elemente) */
-    --navbar-bg: #2b2b3a;         /* Hintergrund der Navbar */
-    --icon-clr:  #e0e0e0;         /* Standard‑Icon‑Farbe (helles Grau) */
+    --accent:    #91bf54;          /* NEU: Offizielle Akzentfarbe */
+    --navbar-bg: #2b2b3a;          /* Hintergrund der Navbar */
+    --icon-clr:  #e0e0e0;          /* Standard‑Icon‑Farbe (helles Grau) */
+    --icon-offset: 0.45rem;        /* Abstand, den das Icon nach unten rückt */
 }
 
 /* Property‑Definition für Animation */
@@ -38,7 +39,9 @@ html, body {
     overflow: hidden;
     background: var(--activeclr);
     box-shadow: rgba(0,0,0,0.4) 0px 7px 29px 0px;
-    margin-top: 2rem;
+
+    /* Navigationsleiste ein Stück nach unten verschoben */
+    margin-top: 3rem;
 }
 
 /* -------------------- Navbar -------------------- */
@@ -48,7 +51,7 @@ html, body {
     display: flex;
     justify-content: center;      /* zentriert, Abstand über gap */
     align-items: center;
-    gap: 1.8rem;                 /* Abstand zwischen Icons */
+    gap: 1.8rem;                  /* Abstand zwischen Icons */
 }
 
 /* -------------------- Nav‑Item (Icon + Label) -------------------- */
@@ -71,6 +74,13 @@ html, body {
     font-size: 0.78rem;
     color: var(--icon-clr);
     transition: color 0.3s ease;
+}
+
+/* Nur das Icon ein Stück nach unten schieben */
+.navitem ion-icon {
+    display: block;        /* sorgt für verlässliches Margin-Verhalten */
+    line-height: 1;        /* verhindert ungewollte vertikale Zusatzabstände */
+    margin-top: var(--icon-offset);
 }
 
 /* Aktives Icon + Label → Akzentfarbe */
@@ -126,9 +136,10 @@ html, body {
 @media (max-width: 768px) {
     .wrapper {
         width: 90%;               /* fast die gesamte Breite */
+        margin-top: 2.5rem;       /* etwas weniger Abstand auf kleineren Screens */
     }
     .navbar {
-        gap: 1.2rem;             /* etwas weniger Abstand */
+        gap: 1.2rem;              /* etwas weniger Abstand */
     }
     .navitem {
         width: 2.8rem;
@@ -144,6 +155,7 @@ html, body {
     .wrapper {
         width: 100%;              /* volle Breite des Viewports */
         border-radius: 0;         /* optional: keine Abrundungen am Rand */
+        margin-top: 2rem;         /* kompakter auf Mobil */
     }
     .navbar {
         gap: 0.8rem;
@@ -159,8 +171,7 @@ html, body {
     }
 }
 
-/* Sehr kleine Bildschirme (max‑width: 360px) – Icons werden etwas kleiner
-   und der Abstand wird weiter reduziert, damit alles sichtbar bleibt. */
+/* Sehr kleine Bildschirme (max‑width: 360px) */
 @media (max-width: 360px) {
     .navbar {
         gap: 0.6rem;
