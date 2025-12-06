@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teenkreis – Startseite</title>
+    <title>Teenkreis – Standort</title>
 
     <!-- Ionicons (Icon‑Font) -->
     <script type="module"
@@ -13,22 +13,26 @@
 
     <!-- Eigenes CSS (Dark‑Mode, responsive) -->
     <link rel="stylesheet" href="style.css?v=1.0">
+
+    <!-- Standort: größerer Zeilenabstand -->
+    <style>
+      .content p { line-height: 1.8; }
+    </style>
 </head>
 <body>
 
-    <!-- ==================== LOGO + NAVBAR IN EINER ZEILE ==================== -->
+    <!-- ==================== LOGO LINKS, NAVBAR MITTIG ==================== -->
     <div class="navrow">
-        <!-- Logo links daneben -->
         <img src="img/EC-Rendsburg_transparent.png"
              alt="Logo Gemeinschaft Rendsburg"
              class="brandlogo">
 
-        <!-- Navigations-Wrapper wie gehabt -->
+        <!-- ==================== NAVBAR ==================== -->
         <div class="wrapper">
             <nav class="navbar">
 
-                <!-- Startseite -->
-                <a href="index.html" class="navitem active"
+                <!-- Start -->
+                <a href="index.html" class="navitem"
                    onclick="select(this)"
                    data-clr="#1e1e2f">
                     <ion-icon name="home"></ion-icon>
@@ -51,8 +55,8 @@
                     <span class="label">Vitamin C</span>
                 </a>
 
-                <!-- Standort -->
-                <a href="standort.html" class="navitem"
+                <!-- Standort (aktiv) -->
+                <a href="standort.html" class="navitem active"
                    onclick="select(this)"
                    data-clr="#252535">
                     <ion-icon name="location-outline"></ion-icon>
@@ -81,17 +85,13 @@
 
     <!-- ==================== HAUPTINHALT ==================== -->
     <main class="content">
-        <h1>Willkommen beim Teenkreis</h1>
+        <h1>Standort</h1>
 
-        <p>
-            Kommst DU aus Rendsburg, oder aus der Nähe von Rendsburg?<br>
-			Bist DU Christlich oder hast Interesse am Christlichen Glauben?<br>
-			Suchst DU nach einem mega Teenkeis, bei dem auch DU perfekt reinpasst?<br><br>
-			
-			Dann suchst DU genau UNS!<br><br>
-			
-			Herzlich Willkommen beim Teenkreis der Gemeinschaft in der Evangelischen Kirche am Bahnhof Rendsburg!
-        </p>
+        <p>Wir als Teenkreis gehören zur Gemeinschaft in der Evangelischen Kirche Rendsburg.</p>
+        <p>Diese hat die Adresse Am Bahnhof 7, Rendsburg.</p>
+        <p>Das ist direkt gegenüber vom Rendsburger Bahnhof.</p>
+        <p>Wenn du jetzt vor dem Bahnhof stehst, dich so drehst das der Bahnhof in deinem Rücken ist, deinen Blick in Richtung Bäcker richtest, von da aus deinen Blick noch ein kleines Stück weiter nach hinten leitest, dann müsstest du jetzt unseren Jugendraum, das Vitamin C, sehen können.</p>
+        <p>Dort findet auch unser Teenkreis statt.</p>
     </main>
 
     <!-- Eigenes JavaScript -->
