@@ -149,37 +149,35 @@ html, body {
 }
 
 /* ==========================================================
-   RESPONSIVE – Mobile (Logo unter Navbar, über dem Text)
+   RESPONSIVE – Mobile (Logo unter Navbar, mittig und weiter unten)
    ========================================================== */
 @media (max-width: 480px) {
     /* Navrow stapeln */
     .navrow {
         grid-template-columns: 1fr; /* eine Spalte */
-        row-gap: 0.75rem;
+        row-gap: 0;                 /* Abstände über Margins steuern */
     }
 
     /* Reihenfolge: zuerst Navbar (Wrapper), dann Logo */
     .wrapper {
         grid-column: 1;
-        order: 1;
         width: 100%;
         border-radius: 0;
-        margin-top: 2rem;         /* kompakter oben */
+        margin-top: 2rem;           /* kompakter oben */
     }
 
     .brandlogo {
         grid-column: 1;
-        order: 2;
-        justify-self: center;     /* Logo mittig unter der Navbar */
-        position: static;         /* keine Überlagerung */
-        margin-top: 0.75rem;
+        justify-self: center;       /* Logo mittig unter der Navbar */
+        position: static;           /* keine Überlagerung */
+        margin-top: 2.5rem;         /* weiter nach unten verschoben */
         height: 96px;
         width: auto;
     }
 
     .navbar {
         gap: 0.8rem;
-        overflow-x: auto;         /* falls Icons zu viele werden */
+        overflow-x: auto;           /* falls Icons zu viele werden */
         padding: 0 0.5rem;
     }
     .navitem {
