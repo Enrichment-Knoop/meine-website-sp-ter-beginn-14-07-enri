@@ -4,17 +4,13 @@
 
 /* -------------------- Farbvariablen -------------------- */
 :root {
-    --activeclr: #1e1e2f;          /* Start‑Hintergrundfarbe */
-    --accent:    #94C356;          /* Akzent‑Grün (aktive Elemente) */
-    --navbar-bg: #2b2b3a;          /* Hintergrund der Navbar */
-    --icon-clr:  #e0e0e0;          /* Standard‑Icon‑Farbe (helles Grau) */
-    /* ... deine bestehenden Variablen ... */
-    --icon-offset: 0.45rem; /* Abstand, den das Icon nach unten rückt */
+    --activeclr: #1e1e2f;          /* Seitenhintergrund */
+    --accent:    #94C356;          /* Akzent‑Grün */
+    --navbar-bg: #2b2b3a;          /* Navbar‑Hintergrund */
+    --icon-clr:  #e0e0e0;          /* Icon/Label‑Farbe */
+    --icon-offset: 0.45rem;        /* vertikaler Icon‑Offset */
 }
-<div data-component="search-results-grid">
 
-
-</div>
 /* Property‑Definition für Animation */
 @property --activeclr {
     syntax: "<color>";
@@ -35,36 +31,37 @@ html, body {
     align-items: center;
 }
 
-/* ==================== Logo links, Navbar mittig ==================== */
+/* ==================== Logo links, Navbar mittig (Desktop) ==================== */
+/* Mit CSS Grid: Logo ganz links, Navbar exakt mittig */
 .navrow {
-    position: relative;
     width: 100%;
-    display: flex;
-    justify-content: center; /* zentriert den Wrapper/ die Navbar */
+    display: grid;
+    grid-template-columns: 1fr minmax(0, 28rem) 1fr; /* Mitte fix für Navbar, Ränder flexibel */
     align-items: center;
+    column-gap: 0.75rem;
 }
 
-/* Logo linksbündig platzieren, vertikal an den Wrapper-Abstand angelehnt */
+/* Logo linksbündig */
 .brandlogo {
-    position: absolute;
-    left: 0;          /* ganz links am Seitenrand */
-    top: 3rem;        /* gleiche vertikale Position wie der Wrapper-Offset */
+    grid-column: 1;              /* linke Spalte */
+    justify-self: start;
     display: block;
-    height: 96px;     /* doppelt so groß wie zuvor */
+    height: 96px;                /* Logo‑Größe */
     width: auto;
+    margin-top: 3rem;            /* gleiche vertikale Linie wie Wrapper */
 }
 
-/* -------------------- Wrapper (breiter) -------------------- */
+/* Wrapper/ Navbar mittig */
 .wrapper {
-    width: 28rem;                 /* Desktop‑Breite */
+    grid-column: 2;              /* mittlere Spalte */
+    justify-self: center;
+    width: 28rem;
     height: 6rem;
     border-radius: 1rem;
     overflow: hidden;
     background: var(--activeclr);
     box-shadow: rgba(0,0,0,0.4) 0px 7px 29px 0px;
-
-    /* Navigationsleiste ein Stück nach unten verschoben */
-    margin-top: 3rem;
+    margin-top: 3rem;            /* gleicher Offset wie Logo */
 }
 
 /* -------------------- Navbar -------------------- */
@@ -72,9 +69,9 @@ html, body {
     height: 4rem;
     background: var(--navbar-bg);
     display: flex;
-    justify-content: center;      /* zentriert, Abstand über gap */
+    justify-content: center;
     align-items: center;
-    gap: 1.8rem;                  /* Abstand zwischen Icons */
+    gap: 1.8rem;
 }
 
 /* -------------------- Nav‑Item (Icon + Label) -------------------- */
@@ -82,16 +79,16 @@ html, body {
     display: flex;
     flex-direction: column;       /* Icon über Text */
     align-items: center;
-    width: 3rem;                  /* Breite pro Icon‑Block */
+    width: 3rem;
     height: 100%;
     color: var(--icon-clr);
     font-size: 1.5rem;            /* Icon‑Größe */
     cursor: pointer;
-    text-decoration: none;        /* Unterstreichung entfernen */
+    text-decoration: none;
     transition: color 0.3s ease;
 }
 
-/* Beschriftung */
+/* Beschriftung (wichtig für “Standort”) */
 .label {
     margin-top: 0.2rem;
     font-size: 0.78rem;
@@ -99,14 +96,14 @@ html, body {
     transition: color 0.3s ease;
 }
 
-/* Nur das Icon ein Stück nach unten schieben */
+/* Icon leicht nach unten */
 .navitem ion-icon {
-    display: block;        /* sorgt für verlässliches Margin-Verhalten */
-    line-height: 1;        /* verhindert ungewollte vertikale Zusatzabstände */
+    display: block;
+    line-height: 1;
     margin-top: var(--icon-offset);
 }
 
-/* Aktives Icon + Label → Akzentfarbe */
+/* Aktives Item in Akzentfarbe (Icon + Label) */
 .navitem.active,
 .navitem.active .label {
     color: var(--accent);
@@ -133,7 +130,7 @@ html, body {
     color: var(--accent);
 }
 
-/* -------------------- Grün‑Akzent‑Button -------------------- */
+/* -------------------- Button (falls verwendet) -------------------- */
 .btn {
     width: 85px;
     height: 35px;
@@ -144,45 +141,45 @@ html, body {
     cursor: pointer;
     transition: background 0.25s ease;
     background-color: var(--accent);
-    color: #f9f5f4;  /* Offwhite statt reinem Weiß (#fff) */
+    color: #f9f5f4;  /* Offwhite */
     border: none;
 }
 .btn:hover {
-    background-color: #94C356; /* Hover-Farbe an Akzent angepasst */
+    background-color: #94C356; /* gleiches Grün */
 }
 
 /* ==========================================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE – Mobile (Logo unter Navbar, über dem Text)
    ========================================================== */
-
-/* Tablet / kleine Laptops (max‑width: 768px) */
-@media (max-width: 768px) {
-    .wrapper {
-        width: 90%;               /* fast die gesamte Breite */
-        margin-top: 2.5rem;       /* etwas weniger Abstand auf kleineren Screens */
-    }
-    .navbar {
-        gap: 1.2rem;              /* etwas weniger Abstand */
-    }
-    .navitem {
-        width: 2.8rem;
-        font-size: 1.3rem;
-    }
-    .label {
-        font-size: 0.7rem;
-    }
-}
-
-/* Mobile (max‑width: 480px) */
 @media (max-width: 480px) {
-    .wrapper {
-        width: 100%;              /* volle Breite des Viewports */
-        border-radius: 0;         /* optional: keine Abrundungen am Rand */
-        margin-top: 2rem;         /* kompakter auf Mobil */
+    /* Navrow stapeln */
+    .navrow {
+        grid-template-columns: 1fr; /* eine Spalte */
+        row-gap: 0.75rem;
     }
+
+    /* Reihenfolge: zuerst Navbar (Wrapper), dann Logo */
+    .wrapper {
+        grid-column: 1;
+        order: 1;
+        width: 100%;
+        border-radius: 0;
+        margin-top: 2rem;         /* kompakter oben */
+    }
+
+    .brandlogo {
+        grid-column: 1;
+        order: 2;
+        justify-self: center;     /* Logo mittig unter der Navbar */
+        position: static;         /* keine Überlagerung */
+        margin-top: 0.75rem;
+        height: 96px;
+        width: auto;
+    }
+
     .navbar {
         gap: 0.8rem;
-        overflow-x: auto;         /* horizontales Scrollen, falls nötig */
+        overflow-x: auto;         /* falls Icons zu viele werden */
         padding: 0 0.5rem;
     }
     .navitem {
@@ -192,8 +189,7 @@ html, body {
     .label {
         font-size: 0.65rem;
     }
-}
-@media (max-width: 480px) {
+
     :root { --icon-offset: 0.5rem; }
 }
 
